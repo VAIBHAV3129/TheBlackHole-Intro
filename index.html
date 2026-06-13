@@ -1,1 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Black Hole</title>
+    <style>
+        :root {
+            --bg-color: #f5f5f7;
+            --black: #111111;
+            --card-offset: 8px;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--black);
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23111111' stroke-width='2' stroke-linecap='square'><line x1='12' y1='1' x2='12' y2='23'></line><line x1='1' y1='12' x2='23' y2='12'></line></svg>") 12 12, auto;
+        }
+
+        .zine-layout {
+            max-width: 750px;
+            width: 100%;
+            border: 4px solid var(--black);
+            padding: 30px;
+            background: #ffffff;
+            box-shadow: 14px 14px 0px var(--black); 
+        }
+
+        header {
+            border-bottom: 4px double var(--black);
+            padding-bottom: 20px;
+            margin-bottom: 35px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .avatar-frame {
+            float: right;
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--black);
+            margin-left: 15px;
+            background: #eee;
+        }
+
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        header p {
+            font-size: 1rem;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        .link-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .brutal-link {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            text-decoration: none;
+            color: var(--black);
+            border: 3px solid var(--black);
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: var(--card-offset) var(--card-offset) 0px var(--black);
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><path d='M8 2v18h2v2h2v2h2v2h4v-2h2v-2h2v-2h2V10h-2V6h-2V2h-6v6h-2V2H8z' fill='%23ffffff' stroke='%23111111' stroke-width='2' stroke-linejoin='miter'/></svg>") 8 2, pointer;
+        }
+
+        .brutal-link * {
+            cursor: inherit;
+        }
+
+        .brutal-link h2 {
+            font-size: 1.4rem;
+            text-decoration: underline;
+            margin-bottom: 6px;
+        }
+
+        .brutal-link p {
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .arrow {
+            font-size: 1.8rem;
+            font-weight: bold;
+            padding-left: 15px;
+        }
+
+        .brutal-link:nth-child(1) { background-color: #e0f2fe; transform: rotate(-0.5deg); }
+        .brutal-link:nth-child(2) { background-color: #dcfce7; transform: rotate(0.4deg); }
+        .brutal-link:nth-child(3) { background-color: #ffedd5; transform: rotate(-0.3deg); }
+
+        .brutal-link:hover {
+            transform: translate(2px, 2px) rotate(0deg);
+            box-shadow: 4px 4px 0px var(--black);
+        }
+
+        .brutal-link:active {
+            transform: translate(var(--card-offset), var(--card-offset)) rotate(0deg);
+            box-shadow: 0px 0px 0px var(--black);
+        }
+
+        footer {
+            margin-top: 40px;
+            border-top: 2px solid var(--black);
+            padding-top: 15px;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="zine-layout">
+        <header>
+            <div class="avatar-frame">
+                <img src="https://github.com/VAIBHAV3129.png" alt="Vaibhav's Github Avatar">
+            </div>
+            <h1>@TheBlackHole</h1>
+            <p>Welcome to my intro webpage,I am Vaibhav a teen hacker with interst in HTML, Python, CSS etc.</p>
+        </header>
+
+        <nav class="link-stack">
+            <a href="https://github.com/VAIBHAV3129" target="_blank" class="brutal-link">
+                <div>
+                    <h2>Code Vault</h2>
+                    <p>Basically click here to have a quick peek into my github repo.</p>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+
+            <a href="https://vaibhav3129.github.io/" target="_blank" class="brutal-link">
+                <div>
+                    <h2>The Main Hub</h2>
+                    <p>The main personal website that links to all the details,projects and other updates.</p>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+
+            <a href="https://thebrainbrowser.blogspot.com/" target="_blank" class="brutal-link">
+                <div>
+                    <h2>The Brain Browser</h2>
+                    <p>This is my science blog on blogger.</p>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+        </nav>
+
+        <footer>
+            <span>Status: Online</span>
+            <span>Made with <3 by Vaibhav </span>
+        </footer>
+    </main>
+
+</body>
+</html>
