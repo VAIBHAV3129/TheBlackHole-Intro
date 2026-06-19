@@ -11,8 +11,7 @@
     }
 
 
-
-      
+    
     * {
       box-sizing: border-box;
       margin: 0;
@@ -28,6 +27,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: crosshair;
     }
 
     .zine-layout {
@@ -115,6 +115,7 @@
       background: #ffffff;
       box-shadow: 8px 8px 0px var(--black);
       transition: transform 0.1s ease, box-shadow 0.1s ease;
+      cursor: pointer;
     }
 
     .brutal-link h2 {
@@ -169,7 +170,6 @@
       position: relative;
     }
 
-      
     .pulse-dot::after {
       content: '';
       position: absolute;
@@ -187,6 +187,24 @@
       100% { transform: scale(2.5); opacity: 0; }
     }
 
+    .custom-cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--black);
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      display: none;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    @media (pointer: fine) {
+      body { cursor: none; }
+      .brutal-link { cursor: none; }
+      .custom-cursor { display: block; }
+    }
+
     @media (max-width: 600px) {
       body { padding: 15px 10px; }
       .zine-layout { padding: 15px; box-shadow: 8px 8px 0px var(--black); }
@@ -200,12 +218,15 @@
 </head>
 <body>
 
+  <div class="custom-cursor" id="cursor"></div>
+
   <main class="zine-layout">
     <header>
       <div class="avatar-frame">
         <img src="https://github.com/VAIBHAV3129.png" alt="Vaibhav's Github Avatar">
       </div>
       <h1>@The Black Hole</h1>
+      
       <p>Welcome to my intro webpage, I am Vaibhav a teen hacker with interest in HTML, Python, CSS etc.</p>
     </header>
 
@@ -226,7 +247,6 @@
         <div class="arrow">→</div>
       </a>
 
-
       <a href="https://thebrainbrowser.blogspot.com/" target="_blank" class="brutal-link link3">
         <div>
           <h2>The Brain Browser</h2>
@@ -245,6 +265,30 @@
     </footer>
   </main>
 
+  <script>
+    const cursor = document.getElementById('cursor');
     
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    
+    document.querySelectorAll('.brutal-link').forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        cursor.style.width = '30px';
+        cursor.style.height = '30px';
+        cursor.style.background = 'var(--black)';
+        cursor.style.mixBlendMode = 'difference';
+      });
+      
+      link.addEventListener('mouseleave', () => {
+        cursor.style.width = '20px';
+        cursor.style.height = '20px';
+        cursor.style.background = 'rgba(255, 255, 255, 0.4)';
+        cursor.style.mixBlendMode = 'normal';
+      });
+    });
+  </script>
 </body>
 </html>
