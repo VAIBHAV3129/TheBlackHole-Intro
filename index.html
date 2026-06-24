@@ -5,290 +5,162 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Black Hole</title>
   <style>
-    :root {
-      --bg-color: #f5f5f7;
-      --black: #111111;
-    }
-
-
-    
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Courier New', Courier, monospace;
+      font-family: 'Courier New', monospace;
     }
 
+
+    
     body {
-      background: linear-gradient(135deg, #f5f5f7 0%, #e2e8f0 100%);
+      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
       min-height: 100vh;
-      color: var(--black);
-      padding: 40px 20px;
       display: flex;
-      justify-content: center;
       align-items: center;
-      cursor: crosshair;
+      justify-content: center;
+      padding: 20px;
+      color: #111;
     }
 
-    .zine-layout {
-      max-width: 750px;
+    .container {
+      max-width: 650px;
       width: 100%;
-      border: 4px solid var(--black);
-      padding: 30px;
       background: #ffffff;
-      box-shadow: 14px 14px 0px var(--black); 
+      border: 4px solid #111;
+      padding: 25px;
+      box-shadow: 10px 10px 0px #111;
     }
 
     header {
-      border-bottom: 4px double var(--black);
-      padding-bottom: 20px;
-      margin-bottom: 35px;
+      border-bottom: 4px dashed #111;
+      padding-bottom: 15px;
+      margin-bottom: 25px;
     }
 
-    header h1 {
-      font-size: 2.8rem;
-      letter-spacing: -1px;
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
       text-transform: uppercase;
-        display: inline-block;
-      animation: titleBounce 2s ease-in-out infinite;
     }
 
-    @keyframes titleBounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+    .spin-star {
+      font-size: 2rem;
+      display: inline-block;
+      animation: spinMe 3s linear infinite;
     }
 
-    .avatar-frame {
-      float: right;
-      width: 80px;
-      height: 80px;
-      border: 3px solid var(--black);
-      margin-left: 15px;
-      background: #eee;
-        position: relative;
-      overflow: hidden;
+    @keyframes spinMe {
+      to { transform: rotate(360deg); }
     }
 
-    .avatar-frame::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: var(--black);
-      opacity: 0.7;
-      animation: radarScan 2.5s linear infinite;
-    }
-
-    @keyframes radarScan {
-      0%, 100% { top: 0%; }
-      50% { top: 100%; }
-    }
-
-    .avatar-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    header p {
+    .bio {
+      margin-top: 10px;
       font-size: 1rem;
-      margin-top: 8px;
       line-height: 1.4;
     }
 
-    .link-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .brutal-link {
+    .links-grid {
       display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .card {
       text-decoration: none;
-      color: var(--black);
-      border: 3px solid var(--black);
-      padding: 20px;
-      background: #ffffff;
-      box-shadow: 8px 8px 0px var(--black);
+      color: #111;
+      border: 3px solid #111;
+      padding: 15px;
+      box-shadow: 5px 5px 0px #111;
       transition: transform 0.1s ease, box-shadow 0.1s ease;
-      cursor: pointer;
     }
 
-    .brutal-link h2 {
-      font-size: 1.4rem;
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
       text-decoration: underline;
-      margin-bottom: 6px;
     }
 
-    .brutal-link p { font-size: 0.95rem; color: #333; }
-
-    .arrow {
-      font-size: 1.8rem;
-      font-weight: bold;
-      padding-left: 15px;
+    .card p { 
+      font-size: 0.85rem; 
+      color: #333; 
     }
 
-    .link1 { background-color: #e0f2fe; }
-    .link2 { background-color: #dcfce7; }
-    .link3 { background-color: #ffedd5; }
+    .blue-card { background: #e0f2fe; }
+    .green-card { background: #dcfce7; }
+    .orange-card { background: #ffedd5; grid-column: span 2; }
 
-    .brutal-link:hover {
-      transform: translate(2px, 2px);
-      box-shadow: 4px 4px 0px var(--black);
+    .card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0px #111;
     }
 
-    .brutal-link:active {
-      transform: translate(8px, 8px);
-      box-shadow: 0px 0px 0px var(--black);
+    .card:active {
+      transform: translate(5px, 5px);
+      box-shadow: 0px 0px 0px #111;
     }
 
     footer {
-      margin-top: 40px;
-      border-top: 2px solid var(--black);
+      margin-top: 25px;
       padding-top: 15px;
+      border-top: 2px solid #111;
       font-size: 0.85rem;
       display: flex;
       justify-content: space-between;
     }
 
-    .status-container {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      background-color: #22c55e;
-      border-radius: 50%;
-      border: 1px solid var(--black);
-      position: relative;
-    }
-
-    .pulse-dot::after {
-      content: '';
-      position: absolute;
-      top: -1px;
-      left: -1px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      border: 1px solid #22c55e;
-      animation: pulseRing 1.5s ease-out infinite;
-    }
-
-    @keyframes pulseRing {
-      0% { transform: scale(0.95); opacity: 1; }
-      100% { transform: scale(2.5); opacity: 0; }
-    }
-
-    .custom-cursor {
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--black);
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      display: none;
-      background: rgba(255, 255, 255, 0.4);
-    }
-
-    @media (pointer: fine) {
-      body { cursor: none; }
-      .brutal-link { cursor: none; }
-      .custom-cursor { display: block; }
-    }
-
-    @media (max-width: 600px) {
-      body { padding: 15px 10px; }
-      .zine-layout { padding: 15px; box-shadow: 8px 8px 0px var(--black); }
-      header h1 { font-size: 1.9rem; }
-      .avatar-frame { float: none; margin: 0 0 15px 0; width: 70px; height: 70px; }
-      .brutal-link { grid-template-columns: 1fr; gap: 10px; padding: 15px; }
-      .arrow { padding-left: 0; transform: rotate(90deg); width: max-content; }
-      footer { flex-direction: column; gap: 8px; text-align: center; justify-content: center; align-items: center; }
+    @media (max-width: 550px) {
+      .links-grid {
+        grid-template-columns: 1fr;
+      }
+      .orange-card {
+        grid-column: span 1;
+      }
+      h1 { 
+        font-size: 1.6rem; 
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="custom-cursor" id="cursor"></div>
-
-  <main class="zine-layout">
+  <main class="container">
     <header>
-      <div class="avatar-frame">
-        <img src="https://github.com/VAIBHAV3129.png" alt="Vaibhav's Github Avatar">
+      <div class="title-row">
+        <h1>@The Black Hole</h1>
+        <span class="spin-star">★</span>
       </div>
-      <h1>@The Black Hole</h1>
-      
-      <p>Welcome to my intro webpage, I am Vaibhav a teen hacker with interest in HTML, Python, CSS etc.</p>
+      <p class="bio">Hey, I'm Vaibhav. A teen hacker juss messing around with HTML, CSS, and Python. Welcome to my corner of the web.</p>
     </header>
 
-    <nav class="link-stack">
-      <a href="https://github.com/VAIBHAV3129" target="_blank" class="brutal-link link1">
-        <div>
-          <h2>Code Vault</h2>
-          <p>Basically click here to have a quick peek into my github repo.</p>
-        </div>
-        <div class="arrow">→</div>
+    <nav class="links-grid">
+      <a href="https://github.com/VAIBHAV3129" target="_blank" class="card blue-card">
+        <h2>Code Vault</h2>
+        <p>Peek into my GitHub repositories and all of ky currently active projects.</p>
       </a>
 
-      <a href="https://vaibhav3129.github.io/" target="_blank" class="brutal-link link2">
-        <div>
-          <h2>The Main Hub</h2>
-          <p>The main personal website that links to all the details, projects and other updates. (And pssst.... the password is secret, yep literally secret)</p>
-        </div>
-        <div class="arrow">→</div>
+      <a href="https://vaibhav3129.github.io/" target="_blank" class="card green-card">
+        <h2>The Main Hub</h2>
+        <p>My personal site. (The secret access password is literally "secret").</p>
       </a>
 
-      <a href="https://thebrainbrowser.blogspot.com/" target="_blank" class="brutal-link link3">
-        <div>
-          <h2>The Brain Browser</h2>
-          <p>This is my science blog on blogger.</p>
-        </div>
-        <div class="arrow">→</div>
+      <a href="https://thebrainbrowser.blogspot.com/" target="_blank" class="card orange-card">
+        <h2>The Brain Browser</h2>
+        <p>My science blog where I break down complex ideas into readable pieces.</p>
       </a>
     </nav>
 
     <footer>
-      <div class="status-container">
-        <div class="pulse-dot"></div>
-        <span>Status: Online</span>
-      </div>
+      <span>Status: 🟢 Online</span>
       <span>Made with &lt;3 by Vaibhav</span>
     </footer>
   </main>
 
-  <script>
-    const cursor = document.getElementById('cursor');
-    
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-
-    
-    document.querySelectorAll('.brutal-link').forEach(link => {
-      link.addEventListener('mouseenter', () => {
-        cursor.style.width = '30px';
-        cursor.style.height = '30px';
-        cursor.style.background = 'var(--black)';
-        cursor.style.mixBlendMode = 'difference';
-      });
-      
-      link.addEventListener('mouseleave', () => {
-        cursor.style.width = '20px';
-        cursor.style.height = '20px';
-        cursor.style.background = 'rgba(255, 255, 255, 0.4)';
-        cursor.style.mixBlendMode = 'normal';
-      });
-    });
-  </script>
 </body>
 </html>
